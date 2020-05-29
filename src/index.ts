@@ -5,6 +5,12 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({extended: false}));
 
+app.get('/', (req:any, res:any) => {
+    res.send("HELLO FROM get");
+})
 
-console.log("HIII")
+app.use('/', (req: Request,res: Response)=>{
+    res.send("HELLO FROM use JS");
+})
+
 app.listen(7000);
