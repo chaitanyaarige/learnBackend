@@ -1,0 +1,30 @@
+{
+  "name": "learnBackend",
+  "version": "1.0.0",
+  "description": "For each and every task, there are different branches created.  please check branches",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^14.0.5",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
+  },
+  "scripts": {
+    "start": "npm run build:live",
+    "build": "tsc -p .",
+    "build:live": "nodemon --watch 'src/**/*.ts' --exec ts-node src/index.ts",
+    "live": "nodemon --watch src/**/*.ts --exec ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaitanyaarige/learnBackend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaitanyaarige/learnBackend/issues"
+  },
+  "homepage": "https://github.com/chaitanyaarige/learnBackend#readme"
+}
