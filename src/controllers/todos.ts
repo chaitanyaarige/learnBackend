@@ -1,5 +1,5 @@
 import db from '../db/db';
-import models from '../models';
+import models from '../models/index';
 import { Router, Request, Response } from 'express';
 import { createExpressServer } from "routing-controllers";
 

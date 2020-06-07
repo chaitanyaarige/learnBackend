@@ -1,5 +1,6 @@
 'use strict';
-module.exports = (sequelize, DataTypes) => {
+
+module.exports = (sequelize: any, DataTypes: any) => {
   const TodoItem = sequelize.define('TodoItem', {
     description: {
       type: DataTypes.STRING,
@@ -7,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   
-  TodoItem.associate = (models) => {
+  TodoItem.associate = (models: any) => {
     // associations can be defined here
     TodoItem.belongsTo(models.Todo, {
       foreignKey: 'todoId',
