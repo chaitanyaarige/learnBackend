@@ -1,4 +1,5 @@
 import db from '../db/db';
+import models from '../models';
 import { Router, Request, Response } from 'express';
 import { createExpressServer } from "routing-controllers";
 
@@ -28,30 +29,26 @@ class TodosController {
     });
   }
 
-  createTodo(req: Request, res: Response) {
-    if (!req.body.title) {
-      return res.status(400).send({
-        success: 'false',
-        message: 'title is required',
-      });
-    } else if (!req.body.description) {
-      return res.status(400).send({
-        success: 'false',
-        message: 'description is required',
-      });
+  createTodo(req: Request, res: Response) {  
+      if (!req.body.title) {    
+          return res.status(400).send({      
+              success: 'false',      
+              message: 'title is required',    
+            });
+        }
+        
+        const todo = {  
+            title: req.body.title,
+        };
+        
+        models.Todo.create(todo).then((todo) => {  
+            return res.status(201).send({     
+                success: 'true',     
+                message: 'todo added successfully',     
+                todo,   
+            });
+        });
     }
-    const todo = {
-      id: db.length + 1,
-      title: req.body.title,
-      description: req.body.description,
-    };
-    db.push(todo);
-    return res.status(201).send({
-      success: 'true',
-      message: 'todo added successfully',
-      todo,
-    });
-  }
 
   updateTodo(req: Request, res: Response) {
     const id = parseInt(req.params.id, 10);
