@@ -1,10 +1,25 @@
 var express = require('express');
-import "reflect-metadata"; // this shim is required
+import { Router, Request, Response } from 'express';
+var app = express();
 var bodyParser = require('body-parser');
-const app = express();// get all todos
-app.use(bodyParser.urlencoded({ extended: false }));
-import router from './routes/index';
 
-app.use(router);
+app.use(bodyParser.urlencoded({extended: false}));
 
-app.listen(7000);
+app.get('/', (req:any, res:any) => {
+    res.send("HELLO FROM get");
+})
+
+app.use('/', (req: Request,res: Response)=>{
+    res.send("HELLO FROM use JS");
+})
+
+
+app.listen(7000,()=>{
+    console.log(`
+    **********************************************
+    ***********    http://localhost:7000/  *******
+    **********************************************
+    `)
+});
+app.set('title', 'My Site')
+app.get('title') // "My Site"

@@ -1,6 +1,12 @@
-/*
+//This is for express reference for all topics
+https://expressjs.com
+https://expressjs.com/2x/guide.html
+
+//Handling errors
+
+https://zellwk.com/blog/express-errors/
+
 https://github.com/typeorm/typescript-express-example
 https://github.com/andregardi/jwt-express-typeorm
 https://github.com/gothinkster/node-express-realworld-example-app
 https://medium.com/@purposenigeria/using-postgresql-and-sequelize-to-persist-our-data-c86854a3c6ac
-*/
