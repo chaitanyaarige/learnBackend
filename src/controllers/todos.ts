@@ -41,7 +41,7 @@ class TodosController {
             title: req.body.title,
         };
         
-        models.Todo.create(todo).then((todo) => {  
+        models.Todo.create(todo).then((todo:any) => {  
             return res.status(201).send({     
                 success: 'true',     
                 message: 'todo added successfully',     
