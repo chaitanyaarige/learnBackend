@@ -1,4 +1,4 @@
-// 'use strict';
+'use strict';
 require('dotenv').config()
 const fs = require('fs');
 const path = require('path');
@@ -6,7 +6,10 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const db: any = { };
+let db :any= {
+  sequelize: '',
+  Sequelize: ''
+};
 
 let sequelize: any;
 if (config.use_env_variable) {
@@ -33,6 +36,11 @@ Object.keys(db).forEach((modelName: any) => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.Todo={
+  create:function(){
+
+  }
+}
 
 // module.exports = db;
-export default db;
+export let models=db;

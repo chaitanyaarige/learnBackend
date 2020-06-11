@@ -1,7 +1,8 @@
 import db from '../db/db';
-import * as models from '../models/index';
+import {models} from '../models/index';
 import { Router, Request, Response } from 'express';
 import { createExpressServer } from "routing-controllers";
+import todos from '../db/db';
 
 class TodosController {
   getAllTodos(req: Request, res: Response) {
