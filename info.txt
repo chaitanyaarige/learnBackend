@@ -3,8 +3,14 @@ https://expressjs.com
 https://expressjs.com/2x/guide.html
 
 //Handling errors
-
 https://zellwk.com/blog/express-errors/
+
+
+//pooling connection
+https://riptutorial.com/node-js/example/4587/using-a-connection-pool
+
+
+//Sample Projects
 
 https://github.com/typeorm/typescript-express-example
 https://github.com/andregardi/jwt-express-typeorm
