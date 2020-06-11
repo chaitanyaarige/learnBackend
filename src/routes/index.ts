@@ -5,11 +5,11 @@ import { createExpressServer } from "routing-controllers";
 import todoController from '../controllers/todos';
 const router = express.Router();
 
-router.get('/api/v1/todos', todoController.getAllTodos);
-router.get('/api/v1/todos/:id', todoController.getTodo);
-router.post('/api/v1/todos', todoController.createTodo);
-router.put('/api/v1/todos/:id', todoController.updateTodo);
-router.delete('/api/v1/todos/:id', todoController.deleteTodo);
+router.get('/api/todos', todoController.getAllTodos);
+router.get('/api/todos/:id', todoController.getTodo);
+router.post('/api/todos', todoController.createTodo);
+router.put('/api/todos/:id', todoController.updateTodo);
+router.delete('/api/todos/:id', todoController.deleteTodo);
 
 
 export default router;
