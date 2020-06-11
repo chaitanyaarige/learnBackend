@@ -1,0 +1,6 @@
+/*
+https://github.com/typeorm/typescript-express-example
+https://github.com/andregardi/jwt-express-typeorm
+https://github.com/gothinkster/node-express-realworld-example-app
+https://medium.com/@purposenigeria/using-postgresql-and-sequelize-to-persist-our-data-c86854a3c6ac
+*/
