@@ -1,7 +1,7 @@
 'use strict';
 
-module.exports = (sequelize: any, DataTypes: any) => {
-  const TodoItem = sequelize.define('TodoItem', {
+module.exports = (typeOrm: any, DataTypes: any) => {
+  const TodoItem = typeOrm.define('TodoItem', {
     description: {
       type: DataTypes.STRING,
       allowNull: false,
