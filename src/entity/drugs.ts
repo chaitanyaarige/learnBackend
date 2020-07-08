@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
 
 @Entity()
 export class Drugs {
@@ -18,7 +18,7 @@ export class Drugs {
   supplier: string;
 
   @Column({ })
-  inventory: CharacterData;
+  inventory: number;
 
   @Column("double")
   discount: number;

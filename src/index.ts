@@ -1,7 +1,7 @@
 import { createConnection } from "typeorm";
-import "reflect-metadata";
 import express from "express";
-import {Drug} from "./entity/drugs";
+import "reflect-metadata";
+import {Drugs} from "./entity/drugs";
 
 let dbOptions: any = {
   name: "default",
@@ -42,13 +42,16 @@ let start = async () => {
       });
 
       // test orm
-      let drug = new Drug();
+      let drug = new Drugs();
       drug.id = 1
       drug.drug_name = "Paracetemol"
       drug.serial_number = "dsdsd"
       drug.box_price = 22
+      drug.supplier = 'mee'
+      drug.discount = 0
+      drug.inventory = 199
       await connection.manager.save(drug);
-      const drugs = await connection.manager.find(Drug);
+      const drugs = await connection.manager.find(Drugs);
       console.log(drugs, 'all')
     }
   } catch (error) {
