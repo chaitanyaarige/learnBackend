@@ -18,9 +18,6 @@ export class DrugControllers {
       }
     });
 
-    var jsonParser = bodyParser.json()
-    var urlencodedParser = bodyParser.urlencoded({ extended: false })
-
     this.router.post("/", async (request: Request, response: Response) => {
       try {
         let reqData: any;
