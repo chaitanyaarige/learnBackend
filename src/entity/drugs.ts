@@ -1,26 +1,26 @@
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
 
-@Entity()
+@Entity("drugs")
 export class Drugs {
-  @PrimaryColumn()
+  @PrimaryColumn({name:"id"})
   id: number;
 
-  @Column({ })
+  @Column({name:"serial_number"})
   serial_number: string;
 
-  @Column({ })
+  @Column({name:"drug_name"})
   drug_name: string;
 
-  @Column("double")
+  @Column({name:"box_price"})
   box_price: number;
 
-  @Column({ })
+  @Column({name:"supplier"})
   supplier: string;
 
-  @Column({ })
+  @Column({name:"inventory"})
   inventory: number;
 
-  @Column("double")
+  @Column({name:"discount"})
   discount: number;
 }
 

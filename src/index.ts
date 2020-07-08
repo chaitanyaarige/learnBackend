@@ -13,7 +13,7 @@ let dbOptions: any = {
   database: "pharmacy",
   logging: false,
   synchronize: false,
-  entities: ["src/entities/**/*{.ts,.js}"],
+  entities: ["src/entity/**/*{.ts,.js}"],
 };
 const port = 5000;
 
@@ -34,7 +34,7 @@ let start = async () => {
       expressObj.use("/", router);
 
 
-      let port = 5000;
+      let port = 5200;
       expressObj.listen(port, () => {
         console.log(` ***********************************************
            server is listening on ${port}  http://localhost:${port}/
