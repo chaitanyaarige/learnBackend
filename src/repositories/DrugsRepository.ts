@@ -15,7 +15,7 @@ export class DrugsRepository {
       .getMany();
   }
 
-  async save(data: Drugs) {
+  async saveOne(data: Drugs) {
     return await this.dao.save(data);
   }
 

@@ -27,4 +27,13 @@ export class DrugsService {
       throw error;
     }
   }
+
+  async saveOne(datas: Drugs) {
+    try {
+      let data: any = await this.drugsRepository.saveOne(datas);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
