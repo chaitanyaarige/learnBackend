@@ -1,6 +1,5 @@
 import { Router, Request, Response } from "express";
 import { DrugsService } from "../services/DrugsService"
-import bodyParser from "body-parser";
 
 export class DrugControllers {
   private componentName: string = "DrugControllers";
