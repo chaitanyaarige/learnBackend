@@ -19,6 +19,10 @@ export class DrugsRepository {
     return await this.dao.save(data);
   }
 
+  async findAll() {
+    return await this.dao.find();
+  }
+
   async entity(id: string) {
     return await this.dao.findOne(id, {
       where:{
@@ -39,4 +43,4 @@ export class DrugsRepository {
   }
 }
 
-Object.seal(CustomerCareRepository);
+Object.seal(DrugsRepository);

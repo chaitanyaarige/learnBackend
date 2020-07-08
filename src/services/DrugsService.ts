@@ -3,9 +3,9 @@ import { DrugsRepository } from "../repositories/DrugsRepository";
 
 export class DrugsService {
   public sessionInfo: any;
-  private: DrugsRepository;
+  private drugsRepository: DrugsRepository;
   isUpdate: boolean = false;
-  drugsRepository;
+
   constructor() {
     this.drugsRepository = new DrugsRepository();
   }
@@ -13,6 +13,15 @@ export class DrugsService {
   async search(item: any) {
     try {
       let data: any = await this.drugsRepository.search(item);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async findAll() {
+    try {
+      let data: any = await this.drugsRepository.findAll();
       return data;
     } catch (error) {
       throw error;

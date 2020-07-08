@@ -2,6 +2,7 @@ import { createConnection } from "typeorm";
 import express from "express";
 import "reflect-metadata";
 import {Drugs} from "./entity/drugs";
+import { DrugControllers } from "./controllers/drugControllers";
 
 let dbOptions: any = {
   name: "default",
@@ -31,6 +32,7 @@ let start = async () => {
           });
       });
       expressObj.use("/", router);
+      expressObj.use("/api/drugs", await DrugControllers.getRouter());
 
 
       let port = 5200;
