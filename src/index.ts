@@ -15,7 +15,6 @@ let dbOptions: any = {
   synchronize: false,
   entities: ["src/entity/**/*{.ts,.js}"],
 };
-const port = 5000;
 
 let start = async () => {
   try {
