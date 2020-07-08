@@ -1,7 +1,6 @@
-import express from "express";
 import { Router, Request, Response } from "express";
 import { DrugsService } from "../services/DrugsService"
-
+import bodyParser from "body-parser";
 
 export class DrugControllers {
   private componentName: string = "DrugControllers";
@@ -19,12 +18,14 @@ export class DrugControllers {
       }
     });
 
-    this.router.put("/", async (request: Request, response: Response) => {
+    var jsonParser = bodyParser.json()
+    var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+    this.router.post("/", async (request: Request, response: Response) => {
       try {
         let reqData: any;
-        reqData = request.body.data ? request.body.data : {};
+        reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
-        console.log(reqData, 'cont')
         let drugs = await this.service.saveOne(reqData);
         response.send({ status: 1, data: drugs });
       } catch (error) {
