@@ -1,4 +1,5 @@
 import { createConnection } from "typeorm";
+import express from "express";
 
 let dbOptions: any = {
   name: "default",
@@ -10,15 +11,32 @@ let dbOptions: any = {
   database: "pharmacy",
   logging: false,
   synchronize: false,
-  entities: [__dirname + "/../entities/**/*{.ts,.js}"],
+  entities: ["src/entities/**/*{.ts,.js}"],
 };
 
 let start = async () => {
   try {
     let connection = await createConnection(dbOptions);
-    console.log(connection.isConnected);
-    if(connection.isConnected){
-        
+    if (connection.isConnected) {
+      console.log("Connected To DataBase");
+      let expressObj = express();
+
+
+      const router = express.Router();
+      router.get("/", (req, res) => {
+          res.json({
+              message: "Hello World! Website Applications"
+          });
+      });
+      expressObj.use("/", router);
+
+
+      let port = 5000;
+      expressObj.listen(port, () => {
+        console.log(` ***********************************************
+           server is listening on ${port}  http://localhost:${port}/
+   ***********************************************`);
+      });
     }
   } catch (error) {
     console.log(error);
