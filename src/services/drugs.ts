@@ -1,4 +1,4 @@
-import { drugsList } from "../entities/drugs";
+import { drugsList } from "../entity/drugs";
 import { drugListRepository } from "../repositories/drugs";
 
 
