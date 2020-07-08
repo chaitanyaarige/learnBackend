@@ -12,25 +12,33 @@ let dbOptions: any = {
   database: "pharmacy",
   logging: false,
   synchronize: false,
-  entities: [__dirname + "/../entities/**/*{.ts,.js}"],
+  entities: ["src/entities/**/*{.ts,.js}"],
 };
 const port = 5000;
 
 let start = async () => {
   try {
     let connection = await createConnection(dbOptions);
-    if(connection.isConnected){
-      console.log(`Database Postgres is connected`)
-      let expressApp = express();
-      expressApp.listen(port, async (err: any) => {
-        return console.log(
-          `
-                    ***********************************************
-                            server is listening on ${port}
-                    ***********************************************
-                `
-        )
-      })
+    if (connection.isConnected) {
+      console.log("Connected To DataBase");
+      let expressObj = express();
+
+
+      const router = express.Router();
+      router.get("/", (req, res) => {
+          res.json({
+              message: "Hello World! Website Applications"
+          });
+      });
+      expressObj.use("/", router);
+
+
+      let port = 5000;
+      expressObj.listen(port, () => {
+        console.log(` ***********************************************
+           server is listening on ${port}  http://localhost:${port}/
+          ***********************************************`);
+      });
     }
   } catch (error) {
     console.log(error);
