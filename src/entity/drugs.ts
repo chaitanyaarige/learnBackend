@@ -24,4 +24,5 @@ export class Drugs {
   discount: number;
 }
 
+// route -> index.ts -> services -> doa/ -> controller -> repository -> entity
 
