@@ -1,8 +1,6 @@
 import { createConnection } from "typeorm";
-import express from "express";
+import AppExpress from "./apex/AppExpress"
 import "reflect-metadata";
-import {Drugs} from "./entity/drugs";
-import { DrugControllers } from "./controllers/drugControllers";
 
 let dbOptions: any = {
   name: "default",
@@ -22,18 +20,7 @@ let start = async () => {
     let connection = await createConnection(dbOptions);
     if (connection.isConnected) {
       console.log("Connected To DataBase");
-      let expressObj = express();
-
-
-      const router = express.Router();
-      router.get("/", (req, res) => {
-          res.json({
-              message: "Hello World! Website Applications"
-          });
-      });
-      expressObj.use("/", router);
-      expressObj.use("/api/drugs", await DrugControllers.getRouter());
-
+      let expressObj = new AppExpress().express;
 
       let port = 5200;
       expressObj.listen(port, () => {
@@ -43,17 +30,17 @@ let start = async () => {
       });
 
       // test orm
-      let drug = new Drugs();
-      drug.id = 1
-      drug.drug_name = "Paracetemol"
-      drug.serial_number = "dsdsd"
-      drug.box_price = 22
-      drug.supplier = 'mee'
-      drug.discount = 0
-      drug.inventory = 199
-      await connection.manager.save(drug);
-      const drugs = await connection.manager.find(Drugs);
-      console.log(drugs, 'all')
+      // let drug = new Drugs();
+      // drug.id = 1
+      // drug.drug_name = "Paracetemol"
+      // drug.serial_number = "dsdsd"
+      // drug.box_price = 22
+      // drug.supplier = 'mee'
+      // drug.discount = 0
+      // drug.inventory = 199
+      // await connection.manager.save(drug);
+      // const drugs = await connection.manager.find(Drugs);
+      // console.log(drugs, 'all')
     }
   } catch (error) {
     console.log(error);
