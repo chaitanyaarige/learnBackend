@@ -20,7 +20,9 @@ export class CategoriesRepository {
   }
 
   async findAll() {
-    return await this.dao.find();
+    return await this.dao.find({
+      relations:["drugs"]
+    });
   }
 
   async entity(id: string) {
