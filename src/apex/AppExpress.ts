@@ -1,6 +1,6 @@
 import express from "express";
 import { json, urlencoded } from "body-parser";
-import { DrugControllers } from "../controllers/drugControllers";
+import { DrugControllers } from "../controllers/DrugControllers";
 
 export default class AppExpress {
   public express: any;
@@ -21,6 +21,6 @@ export default class AppExpress {
     this.express.use("/", router);
 
     let drugControllers = new DrugControllers();
-    this.express.use("/api/drugs", await drugControllers.getRouter());
+    this.express.use("/api/drugs", drugControllers.getRouter());
   }
 }

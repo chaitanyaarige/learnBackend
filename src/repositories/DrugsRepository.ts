@@ -1,5 +1,5 @@
 import { getRepository, Repository } from "typeorm";
-import { Drugs } from "../entity/drugs";
+import { Drugs } from "../entity/Drugs";
 
 export class DrugsRepository {
   private dao: Repository<Drugs>;

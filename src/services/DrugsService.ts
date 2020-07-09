@@ -1,4 +1,4 @@
-import { Drugs } from "../entity/drugs";
+import { Drugs } from "../entity/Drugs";
 import { DrugsRepository } from "../repositories/DrugsRepository";
 
 export class DrugsService {
