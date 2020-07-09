@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, OneToOne, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
+import { Drugs } from  "./Drugs"
 
 @Entity("categories")
 export class Categories {
@@ -10,5 +11,8 @@ export class Categories {
 
   @Column({name:"category_name"})
   category_name: string;
-}
 
+  @OneToOne(type => Drugs)
+  @JoinColumn()
+  drug: Drugs;
+}
