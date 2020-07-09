@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
 import { CategoriesService } from "../services/CategoriesService"
 
-export class DrugControllers {
-  private componentName: string = "DrugControllers";
+export class CategoryControllers {
+  private componentName: string = "CategoryControllers";
   private router: Router = Router();
   private service: any = new CategoriesService();
 
