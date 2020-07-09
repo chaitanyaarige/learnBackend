@@ -34,6 +34,12 @@ CREATE TABLE public.drugs (
     discount double precision
 );
 
+CREATE TABLE public.categories (
+    id SERIAL PRIMARY KEY,
+    serial_number character varying(255) NOT NULL,
+    category_name character varying(255) NOT NULL,
+    CONSTRAINT fk_drug_id FOREIGN KEY (id) REFERENCES drugs (id)
+);
 
 ALTER TABLE public.drugs OWNER TO postgres;
 
