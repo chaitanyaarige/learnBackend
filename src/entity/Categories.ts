@@ -12,7 +12,8 @@ export class Categories {
   @Column({name:"category_name"})
   category_name: string;
 
-  @OneToOne(type => Drugs)
-  @JoinColumn()
-  drug: Drugs;
+
+  @JoinColumn({name:"id"})
+  @OneToOne(type => Drugs,drug=>drug.id)
+  drugs: Drugs;
 }
