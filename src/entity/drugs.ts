@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToOne, JoinC
 
 @Entity("drugs")
 export class Drugs {
-  @PrimaryColumn({name:"id"})
+  @PrimaryGeneratedColumn({name:"id"})
   id: number;
 
   @Column({name:"serial_number"})

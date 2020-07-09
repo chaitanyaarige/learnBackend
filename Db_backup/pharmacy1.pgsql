@@ -25,7 +25,7 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.drugs (
-    id integer NOT NULL,
+    id SERIAL PRIMARY KEY,
     serial_number character varying(255) NOT NULL,
     drug_name character varying(255) NOT NULL,
     box_price double precision,
