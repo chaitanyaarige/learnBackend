@@ -25,4 +25,4 @@ export class Drugs {
 }
 
 // route -> index.ts -> controller -> services -> doa/repository
-
+// pg_dump -U postgres pharmacy > pharmacy2.pgsql
