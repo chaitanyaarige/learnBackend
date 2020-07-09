@@ -41,6 +41,8 @@ CREATE TABLE public.categories (
     CONSTRAINT fk_drug_id FOREIGN KEY (id) REFERENCES drugs (id)
 );
 
+INSERT INTO categories(serial_number, category_name) VALUES (1, 'allopathy');
+
 ALTER TABLE public.drugs OWNER TO postgres;
 
 --
