@@ -11,5 +11,5 @@ export class SubCategories {
 
   @JoinColumn({name:"category_id"})
   @OneToOne(type => Categories,category=>category.id)
-  category_id: Categories;
+  category_id: Categories["id"];
 }
