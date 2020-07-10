@@ -1,24 +1,24 @@
-CREATE TYPE "products_status" AS ENUM (
-  'out_of_stock',
-  'in_stock',
-  'running_low'
-);
+-- CREATE TYPE "products_status" AS ENUM (
+--   'out_of_stock',
+--   'in_stock',
+--   'running_low'
+-- );
 
-CREATE TYPE "product_ratings" AS ENUM (
-  'one',
-  'two',
-  'three',
-  'four',
-  'five'
-);
+-- CREATE TYPE "product_ratings" AS ENUM (
+--   'one',
+--   'two',
+--   'three',
+--   'four',
+--   'five'
+-- );
 
-CREATE TYPE "order_status" AS ENUM (
-  'initialized',
-  'paid',
-  'delivered',
-  'payment_failed',
-  'cancelled'
-);
+-- CREATE TYPE "order_status" (
+--   'initialized',
+--   'paid',
+--   'delivered',
+--   'payment_failed',
+--   'cancelled'
+-- );
 
 CREATE TABLE "cities" (
   "id" SERIAL PRIMARY KEY,
@@ -45,10 +45,10 @@ CREATE TABLE "product" (
   "product_sub_category" int[] NOT NULL,
   "price" decimal  NOT NULL,
   "discount" decimal,
-  "status" products_status NOT NULL,
+  "status" varchar NOT NULL,
   "is_having_sizes" boolean,
   "sizes" jsonb,
-  "product_ratings" product_ratings,
+  "product_ratings": varchar,
   "description" text,
   "created_at" timestamp
 );
@@ -82,7 +82,7 @@ CREATE TABLE "customer" (
 CREATE TABLE "orders" (
   "id" SERIAL PRIMARY KEY,
   "customer_id" int REFERENCES "customer" ("id"),
-  "status" order_status NOT NULL,
+  "status" varchar NOT NULL,
   "order_items" jsonb,
   "total_cost" decimal NOT NULL,
   "total_discount" decimal,

@@ -1,19 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column, ManyToOne, JoinColumn, Double, OneToMany, OneToOne, Timestamp } from "typeorm";
 
-enum ProductStatus {
-  'out_of_stock',
-  'in_stock',
-  'running_low'
-}
-
-enum ProductReviews {
-  'one',
-  'two',
-  'three',
-  'four',
-  'five'
-}
-
 @Entity("products")
 export class Products {
   @PrimaryGeneratedColumn({name:"id"})
@@ -40,8 +26,8 @@ export class Products {
   @Column({name:"discount"})
   discount: number;
 
-  @Column("enum", { enum: ProductStatus })
-  status: ProductStatus;
+  @Column({ name: "status" })
+  status: string;
 
   @Column({name:"is_having_sizes"})
   is_having_sizes: boolean;
@@ -49,8 +35,8 @@ export class Products {
   @Column({name: "sizes", type: 'jsonb', nullable: true })
   sizes: Object;
 
-  @Column("enum", { enum: ProductReviews })
-  product_ratings: ProductReviews
+  @Column({ name: "product_ratings" })
+  product_ratings: string;
 
   @Column({name: "description"})
   description: string;
