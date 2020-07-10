@@ -5,11 +5,11 @@ CREATE TYPE "products_status" AS ENUM (
 );
 
 CREATE TYPE "product_ratings" AS ENUM (
-  '1',
-  '2',
-  '3',
-  '4',
-  '5'
+  'one',
+  'two',
+  'three',
+  'four',
+  'five'
 );
 
 CREATE TYPE "order_status" AS ENUM (

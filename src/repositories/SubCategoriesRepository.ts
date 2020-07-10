@@ -1,21 +1,21 @@
 import { getRepository, Repository } from "typeorm";
-import { Categories } from "../entity/Categories";
+import { SubCategories } from "../entity/SubCategories";
 
-export class CategoriesRepository {
-  private dao: Repository<Categories>;
+export class SubCategoriesRepository {
+  private dao: Repository<SubCategories>;
 
   constructor() {
-    this.dao = getRepository(Categories);
+    this.dao = getRepository(SubCategories);
   }
 
   async search(data: any) {
     return await this.dao
-      .createQueryBuilder("categories")
+      .createQueryBuilder("SubCategories")
       .where(data)
       .getMany();
   }
 
-  async saveOne(data: Categories) {
+  async saveOne(data: SubCategories) {
     return await this.dao.save(data);
   }
 
@@ -43,4 +43,4 @@ export class CategoriesRepository {
   }
 }
 
-Object.seal(CategoriesRepository);
+Object.seal(SubCategoriesRepository);
