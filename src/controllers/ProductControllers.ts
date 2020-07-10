@@ -1,10 +1,10 @@
 import { Router, Request, Response } from "express";
-import { DrugsService } from "../services/DrugsService"
+import { ProductsService } from "../services/ProductService"
 
-export class DrugControllers {
-  private componentName: string = "DrugControllers";
+export class ProductControllers {
+  private componentName: string = "ProductControllers";
   private router: Router = Router();
-  private service: any = new DrugsService();
+  private service: any = new ProductsService();
 
   getRouter(): Router {
     this.router.get("/", async (request: Request, response: Response) => {

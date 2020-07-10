@@ -1,11 +1,11 @@
 import { getRepository, Repository } from "typeorm";
-import { Drugs } from "../entity/Drugs";
+import { Products } from "../entity/Products";
 
-export class DrugsRepository {
-  private dao: Repository<Drugs>;
+export class ProductsRepository {
+  private dao: Repository<Products>;
 
   constructor() {
-    this.dao = getRepository(Drugs);
+    this.dao = getRepository(Products);
   }
 
   async search(data: any) {
@@ -15,7 +15,7 @@ export class DrugsRepository {
       .getMany();
   }
 
-  async saveOne(data: Drugs) {
+  async saveOne(data: Products) {
     return await this.dao.save(data);
   }
 
@@ -43,4 +43,4 @@ export class DrugsRepository {
   }
 }
 
-Object.seal(DrugsRepository);
+Object.seal(ProductsRepository);

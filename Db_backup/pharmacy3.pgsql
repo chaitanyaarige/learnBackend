@@ -242,7 +242,7 @@ CREATE TABLE public.product (
     manufacturer character varying,
     product_category integer[],
     product_sub_category integer[] NOT NULL,
-    price integer NOT NULL,
+    price numeric NOT NULL,
     discount numeric,
     status public.products_status NOT NULL,
     is_having_sizes boolean,

@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, OneToOne, PrimaryColumn, Column, ManyToOne, JoinColumn, Double } from "typeorm";
-import { Drugs } from  "./Drugs"
+import { Products } from  "./Products"
 
 @Entity("categories")
 export class Categories {
@@ -14,6 +14,6 @@ export class Categories {
 
 
   @JoinColumn({name:"id"})
-  @OneToOne(type => Drugs,drug=>drug.id)
-  drugs: Drugs;
+  @OneToOne(type => Products,product=>product.id)
+  products: Products;
 }
