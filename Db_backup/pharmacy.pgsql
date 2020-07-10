@@ -47,6 +47,21 @@ CREATE TYPE public.product_ratings AS ENUM (
 ALTER TYPE public.product_ratings OWNER TO postgres;
 
 --
+-- Name: products_product_ratings_enum; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.products_product_ratings_enum AS ENUM (
+    '0',
+    '1',
+    '2',
+    '3',
+    '4'
+);
+
+
+ALTER TYPE public.products_product_ratings_enum OWNER TO postgres;
+
+--
 -- Name: products_status; Type: TYPE; Schema: public; Owner: postgres
 --
 
@@ -59,6 +74,19 @@ CREATE TYPE public.products_status AS ENUM (
 
 ALTER TYPE public.products_status OWNER TO postgres;
 
+--
+-- Name: products_status_enum; Type: TYPE; Schema: public; Owner: postgres
+--
+
+CREATE TYPE public.products_status_enum AS ENUM (
+    '0',
+    '1',
+    '2'
+);
+
+
+ALTER TYPE public.products_status_enum OWNER TO postgres;
+
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
@@ -69,7 +97,8 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.categories (
     id integer NOT NULL,
-    category_name character varying NOT NULL
+    category_name character varying NOT NULL,
+    serial_number character varying NOT NULL
 );
 
 
@@ -175,23 +204,6 @@ ALTER SEQUENCE public.customer_id_seq OWNED BY public.customer.id;
 
 
 --
--- Name: drugs; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.drugs (
-    id integer NOT NULL,
-    serial_number character varying(255) NOT NULL,
-    drug_name character varying(255) NOT NULL,
-    box_price double precision,
-    supplier character varying,
-    inventory character varying,
-    discount double precision
-);
-
-
-ALTER TABLE public.drugs OWNER TO postgres;
-
---
 -- Name: orders; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -275,6 +287,52 @@ ALTER TABLE public.product_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.product_id_seq OWNED BY public.product.id;
+
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products (
+    id integer NOT NULL,
+    product_name character varying NOT NULL,
+    product_code character varying NOT NULL,
+    manufacturer character varying NOT NULL,
+    product_category integer[] NOT NULL,
+    product_sub_category integer[] NOT NULL,
+    price integer NOT NULL,
+    discount integer NOT NULL,
+    status public.products_status_enum NOT NULL,
+    is_having_sizes boolean NOT NULL,
+    sizes jsonb,
+    product_ratings public.products_product_ratings_enum NOT NULL,
+    description character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.products OWNER TO postgres;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.products_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.products_id_seq OWNER TO postgres;
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
@@ -388,6 +446,13 @@ ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.prod
 
 
 --
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
 -- Name: sub_categories id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -405,7 +470,7 @@ ALTER TABLE ONLY public.supplier ALTER COLUMN id SET DEFAULT nextval('public.sup
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.categories (id, category_name) FROM stdin;
+COPY public.categories (id, category_name, serial_number) FROM stdin;
 \.
 
 
@@ -426,18 +491,6 @@ COPY public.customer (id, full_name, email, phone, "Address1", "Address2", custo
 
 
 --
--- Data for Name: drugs; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.drugs (id, serial_number, drug_name, box_price, supplier, inventory, discount) FROM stdin;
-2	dsdsd	Paracetemol	22	mee	199	0
-1	dsdsd	Paracetemol	22	mee	199	0
-3	vhgjh	jhfkhgvk;jbk	22	mee	199	0
-4	vhgjh	jhfkhgvk;jbk	22	mee	199	0
-\.
-
-
---
 -- Data for Name: orders; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -450,6 +503,14 @@ COPY public.orders (id, customer_id, status, order_items, total_cost, total_disc
 --
 
 COPY public.product (id, product_name, product_code, manufacturer, product_category, product_sub_category, price, discount, status, is_having_sizes, sizes, product_ratings, description, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products (id, product_name, product_code, manufacturer, product_category, product_sub_category, price, discount, status, is_having_sizes, sizes, product_ratings, description, created_at) FROM stdin;
 \.
 
 
@@ -505,6 +566,13 @@ SELECT pg_catalog.setval('public.product_id_seq', 1, false);
 
 
 --
+-- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.products_id_seq', 1, false);
+
+
+--
 -- Name: sub_categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -516,6 +584,22 @@ SELECT pg_catalog.setval('public.sub_categories_id_seq', 1, false);
 --
 
 SELECT pg_catalog.setval('public.supplier_id_seq', 1, false);
+
+
+--
+-- Name: products PK_0806c755e0aca124e67c0cf6d7d; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT "PK_0806c755e0aca124e67c0cf6d7d" PRIMARY KEY (id);
+
+
+--
+-- Name: categories UQ_24dbc6126a28ff948da33e97d3b; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT "UQ_24dbc6126a28ff948da33e97d3b" UNIQUE (id);
 
 
 --
@@ -540,14 +624,6 @@ ALTER TABLE ONLY public.cities
 
 ALTER TABLE ONLY public.customer
     ADD CONSTRAINT customer_pkey PRIMARY KEY (id);
-
-
---
--- Name: drugs drugs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.drugs
-    ADD CONSTRAINT drugs_pkey PRIMARY KEY (id);
 
 
 --
@@ -580,6 +656,14 @@ ALTER TABLE ONLY public.sub_categories
 
 ALTER TABLE ONLY public.supplier
     ADD CONSTRAINT supplier_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: categories FK_24dbc6126a28ff948da33e97d3b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categories
+    ADD CONSTRAINT "FK_24dbc6126a28ff948da33e97d3b" FOREIGN KEY (id) REFERENCES public.products(id);
 
 
 --
