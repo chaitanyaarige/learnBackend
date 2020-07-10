@@ -20,7 +20,9 @@ export class SubCategoriesRepository {
   }
 
   async findAll() {
-    return await this.dao.find();
+    return await this.dao.find(
+      {relations:['category_id']}
+    );
   }
 
   async entity(id: string) {
