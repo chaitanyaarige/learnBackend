@@ -9,8 +9,8 @@ export class ProductControllers {
   getRouter(): Router {
     this.router.get("/", async (request: Request, response: Response) => {
       try {
-        let drugs = await this.service.findAll();
-        response.send({ status: 1, data: drugs });
+        let products = await this.service.findAll();
+        response.send({ status: 1, data: products });
       } catch (error) {
         console.log(error);
         response.send({ status: 0, error: error });
@@ -22,8 +22,8 @@ export class ProductControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
-        let drugs = await this.service.saveOne(reqData);
-        response.send({ status: 1, data: drugs });
+        let products = await this.service.saveOne(reqData);
+        response.send({ status: 1, data: products });
       } catch (error) {
         console.log(error);
         response.send({ status: 0, error: error });

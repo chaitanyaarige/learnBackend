@@ -11,7 +11,7 @@ let dbOptions: any = {
   password: "postgres",
   database: "pharmacy",
   logging: false,
-  synchronize: false,
+  synchronize: true,
   entities: ["src/entity/**/*{.ts,.js}"],
 };
 

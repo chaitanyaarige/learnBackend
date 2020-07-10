@@ -21,7 +21,7 @@ export class CategoriesRepository {
 
   async findAll() {
     return await this.dao.find({
-      relations:["drugs"]
+      relations:["products"]
     });
   }
 

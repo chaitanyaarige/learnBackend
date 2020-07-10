@@ -21,8 +21,8 @@ export default class AppExpress {
     });
     this.express.use("/", router);
 
-    let drugControllers = new ProductControllers();
-    this.express.use("/api/drugs", drugControllers.getRouter());
+    let productController = new ProductControllers();
+    this.express.use("/api/products", productController.getRouter());
 
     let categoriesController = new CategoryControllers();
     this.express.use("/api/categories", categoriesController.getRouter())

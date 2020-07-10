@@ -10,7 +10,7 @@ export class ProductsRepository {
 
   async search(data: any) {
     return await this.dao
-      .createQueryBuilder("drugs")
+      .createQueryBuilder("products")
       .where(data)
       .getMany();
   }
