@@ -36,11 +36,11 @@ ALTER TYPE public.order_status OWNER TO postgres;
 --
 
 CREATE TYPE public.product_ratings AS ENUM (
-    '1',
-    '2',
-    '3',
-    '4',
-    '5'
+    'one',
+    'two',
+    'three',
+    'four',
+    'five'
 );
 
 
@@ -97,8 +97,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE public.categories (
     id integer NOT NULL,
-    category_name character varying NOT NULL,
-    serial_number character varying NOT NULL
+    category_name character varying NOT NULL
 );
 
 
@@ -244,52 +243,6 @@ ALTER SEQUENCE public.orders_id_seq OWNED BY public.orders.id;
 
 
 --
--- Name: product; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public.product (
-    id integer NOT NULL,
-    product_name character varying NOT NULL,
-    product_code character varying,
-    manufacturer character varying,
-    product_category integer[],
-    product_sub_category integer[] NOT NULL,
-    price numeric NOT NULL,
-    discount numeric,
-    status public.products_status NOT NULL,
-    is_having_sizes boolean,
-    sizes jsonb,
-    product_ratings public.product_ratings,
-    description text,
-    created_at timestamp without time zone
-);
-
-
-ALTER TABLE public.product OWNER TO postgres;
-
---
--- Name: product_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE public.product_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.product_id_seq OWNER TO postgres;
-
---
--- Name: product_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.product_id_seq OWNED BY public.product.id;
-
-
---
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -305,7 +258,7 @@ CREATE TABLE public.products (
     status public.products_status_enum NOT NULL,
     is_having_sizes boolean NOT NULL,
     sizes jsonb,
-    product_ratings public.products_product_ratings_enum NOT NULL,
+    product_ratings public.product_ratings NOT NULL,
     description character varying NOT NULL,
     created_at timestamp without time zone NOT NULL
 );
@@ -333,6 +286,41 @@ ALTER TABLE public.products_id_seq OWNER TO postgres;
 --
 
 ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
+
+
+--
+-- Name: subCategories; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."subCategories" (
+    id integer NOT NULL,
+    sub_category_name character varying NOT NULL,
+    category_id integer
+);
+
+
+ALTER TABLE public."subCategories" OWNER TO postgres;
+
+--
+-- Name: subCategories_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."subCategories_id_seq"
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."subCategories_id_seq" OWNER TO postgres;
+
+--
+-- Name: subCategories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."subCategories_id_seq" OWNED BY public."subCategories".id;
 
 
 --
@@ -439,17 +427,17 @@ ALTER TABLE ONLY public.orders ALTER COLUMN id SET DEFAULT nextval('public.order
 
 
 --
--- Name: product id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.product ALTER COLUMN id SET DEFAULT nextval('public.product_id_seq'::regclass);
-
-
---
 -- Name: products id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
+-- Name: subCategories id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."subCategories" ALTER COLUMN id SET DEFAULT nextval('public."subCategories_id_seq"'::regclass);
 
 
 --
@@ -470,7 +458,9 @@ ALTER TABLE ONLY public.supplier ALTER COLUMN id SET DEFAULT nextval('public.sup
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.categories (id, category_name, serial_number) FROM stdin;
+COPY public.categories (id, category_name) FROM stdin;
+2	Hair Care
+3	Skin Care
 \.
 
 
@@ -499,18 +489,22 @@ COPY public.orders (id, customer_id, status, order_items, total_cost, total_disc
 
 
 --
--- Data for Name: product; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY public.product (id, product_name, product_code, manufacturer, product_category, product_sub_category, price, discount, status, is_having_sizes, sizes, product_ratings, description, created_at) FROM stdin;
-\.
-
-
---
 -- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.products (id, product_name, product_code, manufacturer, product_category, product_sub_category, price, discount, status, is_having_sizes, sizes, product_ratings, description, created_at) FROM stdin;
+\.
+
+
+--
+-- Data for Name: subCategories; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."subCategories" (id, sub_category_name, category_id) FROM stdin;
+4	Face Skin Care	\N
+5	Hand Skin Care	\N
+6	Hand Skin Care	\N
+7	Hantyrdyjd Skin Care	\N
 \.
 
 
@@ -534,7 +528,7 @@ COPY public.supplier (id, product_name, phone, is_customer, email, "Address1", c
 -- Name: categories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.categories_id_seq', 1, false);
+SELECT pg_catalog.setval('public.categories_id_seq', 3, true);
 
 
 --
@@ -559,17 +553,17 @@ SELECT pg_catalog.setval('public.orders_id_seq', 1, false);
 
 
 --
--- Name: product_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('public.product_id_seq', 1, false);
-
-
---
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_id_seq', 1, false);
+SELECT pg_catalog.setval('public.products_id_seq', 1, true);
+
+
+--
+-- Name: subCategories_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."subCategories_id_seq"', 7, true);
 
 
 --
@@ -595,11 +589,19 @@ ALTER TABLE ONLY public.products
 
 
 --
--- Name: categories UQ_24dbc6126a28ff948da33e97d3b; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: subCategories PK_d22319d65c44efc1d19c4a08989; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.categories
-    ADD CONSTRAINT "UQ_24dbc6126a28ff948da33e97d3b" UNIQUE (id);
+ALTER TABLE ONLY public."subCategories"
+    ADD CONSTRAINT "PK_d22319d65c44efc1d19c4a08989" PRIMARY KEY (id);
+
+
+--
+-- Name: subCategories UQ_5fdeaec083b0032b77b7d5a201d; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."subCategories"
+    ADD CONSTRAINT "UQ_5fdeaec083b0032b77b7d5a201d" UNIQUE (category_id);
 
 
 --
@@ -635,14 +637,6 @@ ALTER TABLE ONLY public.orders
 
 
 --
--- Name: product product_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.product
-    ADD CONSTRAINT product_pkey PRIMARY KEY (id);
-
-
---
 -- Name: sub_categories sub_categories_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -659,11 +653,11 @@ ALTER TABLE ONLY public.supplier
 
 
 --
--- Name: categories FK_24dbc6126a28ff948da33e97d3b; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: subCategories FK_5fdeaec083b0032b77b7d5a201d; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY public.categories
-    ADD CONSTRAINT "FK_24dbc6126a28ff948da33e97d3b" FOREIGN KEY (id) REFERENCES public.products(id);
+ALTER TABLE ONLY public."subCategories"
+    ADD CONSTRAINT "FK_5fdeaec083b0032b77b7d5a201d" FOREIGN KEY (category_id) REFERENCES public.categories(id);
 
 
 --
