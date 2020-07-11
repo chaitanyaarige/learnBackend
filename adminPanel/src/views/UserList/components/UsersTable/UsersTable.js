@@ -143,19 +143,18 @@ const UsersTable = props => {
                           className={classes.avatar}
                           src={user.avatarUrl}
                         >
-                          {getInitials(user.name)}
+                          {getInitials(user.full_name)}
                         </Avatar>
-                        <Typography variant="body1">{user.name}</Typography>
+                        <Typography variant="body1">{user.full_name}</Typography>
                       </div>
                     </TableCell>
                     <TableCell>{user.email}</TableCell>
                     <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
+                      {user.city}, {user.country}, {user.Address}
                     </TableCell>
                     <TableCell>{user.phone}</TableCell>
                     <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
+                      {moment(user.created_at).format('DD/MM/YYYY')}
                     </TableCell>
                   </TableRow>
                 ))}
