@@ -1,24 +1,4 @@
--- CREATE TYPE "products_status" AS ENUM (
---   'out_of_stock',
---   'in_stock',
---   'running_low'
--- );
-
--- CREATE TYPE "product_ratings" AS ENUM (
---   'one',
---   'two',
---   'three',
---   'four',
---   'five'
--- );
-
--- CREATE TYPE "order_status" (
---   'initialized',
---   'paid',
---   'delivered',
---   'payment_failed',
---   'cancelled'
--- );
+ALTER TABLE public.supplier RENAME COLUMN "Address1" TO "Address";
 
 CREATE TABLE "cities" (
   "id" SERIAL PRIMARY KEY,
