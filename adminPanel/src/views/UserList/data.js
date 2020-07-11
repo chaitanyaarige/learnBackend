@@ -1,9 +1,7 @@
 let users = []
-fetch('http://localhost:5200/api/users/')
-  .then(result => {
-    // this.users = result.data
-    console.log(result)
-  })
+fetch('http://localhost:5200/api/customers/')
+  .then(response => response.json())
+  .then(response => users = response)
   .catch(error => console.log(error))
 
 export default users
