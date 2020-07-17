@@ -7,15 +7,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       jhgf: [],
-      users: {
-        full_name: '',
-        email: '',
-        phone: '',
-        address: '',
-        city: '',
-        street:'',
-        country: ''
-      }
+      // users: {
+      //   full_name: '',
+      //   email: '',
+      //   phone: '',
+      //   address: '',
+      //   city: '',
+      //   street:'',
+      //   country: ''
+      // }
     }
   }
 
@@ -35,14 +35,16 @@ class App extends React.Component {
 
   render() {
     return(
-      <div>
-        <ul>
+      <div class="main__container">
         {this.state.jhgf.map(hit =>
-          <li key={hit.objectID}>
-            {hit.city} ,  {hit.country}
-          </li>
+          <div class="border__container" key={hit.objectID}>
+            <div>Name: <span class='title'> {hit.full_name} </span> </div>
+            <div>Email: {hit.email} </div>
+            <div>Phone: {hit.phone} </div>
+            <div>City: {hit.city}</div>
+            <div>Country: {hit.country} </div>
+          </div>
         )}
-      </ul>
     </div>
     )
   }
