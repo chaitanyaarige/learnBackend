@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import productListing from '../../components/ProductListing/productListing.js'
 
 export default function FirstPost() {
   return (
@@ -9,6 +10,7 @@ export default function FirstPost() {
           <a>Back to home</a>
         </Link>
       </h2>
+      <productListing></productListing>
     </>
   )
 }
