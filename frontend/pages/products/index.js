@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import productListing from '../../components/ProductListing/productListing.js'
+import DefaultLayout from 'layouts'
+
 
 export default function FirstPost() {
   return (
