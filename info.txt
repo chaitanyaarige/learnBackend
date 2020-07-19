@@ -1,3 +1,5 @@
 https://www.getpostman.com/collections/1f4880de4df201484109
 
 https://github.com/devias-io/react-material-dashboard.git
+
+https://www.smashingmagazine.com/2020/06/rest-api-react-fetch-axios/
