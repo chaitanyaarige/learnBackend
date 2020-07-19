@@ -6,12 +6,9 @@ import ProductListing from '../../components/ProductListing/productListing'
 export default function FirstPost() {
   return (
     <div>
-      <h1>First Post</h1>
-      <h2>
-        <Link href="/">
-          <a>Back to home</a>
-        </Link>
-      </h2>
+      <div> <Link href="/"> Back To Home </Link></div>
+      <div>This page will have all Products Listed with Categories</div>
+
       <ProductListing />
     </div>
   )
