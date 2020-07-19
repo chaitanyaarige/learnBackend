@@ -50,4 +50,3 @@ class productListing extends React.Component {
 }
 
 export default productListing;
-
