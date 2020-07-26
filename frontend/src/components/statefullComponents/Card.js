@@ -19,7 +19,7 @@ class Card extends React.Component {
           <div key={index}>
             {/* <h3>{index + 1}</h3> <h3>{card.cardName} {card.cardNumber}</h3> */}
             {
-              index != 1 ? (
+              index !== 1 ? (
                 <div>{card.cardName}</div>
               ) : ('asdfghj')
             }
