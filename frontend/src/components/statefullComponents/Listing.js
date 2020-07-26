@@ -25,6 +25,29 @@ class Card extends React.Component {
     })
   }
 
+  changeCardName = (e) => {
+    this.setState({
+      cardName: e.target.value
+    })
+  }
+
+  changeCardNo = (e) => {
+    this.setState({
+      cardNumber: e.target.value
+    })
+  }
+
+  saveDetails = (id) => {
+    const data = {
+      cardName: this.state.cardName,
+      cardNumber: this.state.cardNumber,
+      id: id
+    }
+    this.props.update(data)
+  }
+
+
+
 
   render () {
     return (
@@ -36,8 +59,8 @@ class Card extends React.Component {
                 {
                   this.state.showFormField === item.id ? (
                     <div>
-                      <input type="text" value={this.state.cardName}/><br />
-                      <input type="text" value={this.state.cardNumber}/> <span onClick={this.cancelEdit}>X</span>
+                      <input type="text" value={this.state.cardName} onChange={this.changeCardName}/><br />
+                      <input type="text" value={this.state.cardNumber} onChange={this.changeCardNo}/> <span onClick={this.cancelEdit}>X</span> <button onClick={() => this.saveDetails(item.id)}>save</button>
                     </div>
                   ) : (
                     <div>

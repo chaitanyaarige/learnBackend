@@ -19,6 +19,15 @@ class App extends React.Component {
     })
   }
 
+  updateLsit = (data) => {
+    console.log('data', data)
+    const idOFdata = this.state.arr.findIndex(item => item.id === data.id)
+    console.log('data', idOFdata)
+    this.setState({
+
+    })
+  }
+
   render () {
 
   return (
@@ -31,7 +40,7 @@ class App extends React.Component {
       </div>
       <br></br><br></br><br></br><br></br>
 
-      <Listing array={this.state.arr}/>
+      <Listing array={this.state.arr} update={this.updateLsit} />
     </div>
   );
 }
