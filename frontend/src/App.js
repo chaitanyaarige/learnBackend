@@ -23,8 +23,8 @@ class App extends React.Component {
     console.log('data', data)
     const idOFdata = this.state.arr.findIndex(item => item.id === data.id)
     console.log('data', idOFdata)
-    this.setState({
-
+    this.setState((prevState) => {
+      console.log('af', prevState)
     })
   }
 
