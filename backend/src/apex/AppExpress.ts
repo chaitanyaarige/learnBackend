@@ -1,6 +1,7 @@
 import express from "express";
 import cors from 'cors';
 import { json, urlencoded } from "body-parser";
+import { LoginControllers } from '../controllers/LoginControllers';
 import { ProductControllers } from "../controllers/ProductControllers";
 import { CategoryControllers } from "../controllers/CategoriesController";
 import { SubCategoryControllers } from "../controllers/SubCategoriesController";
@@ -28,6 +29,7 @@ export default class AppExpress {
     });
     this.express.use("/", router);
     this.express.use(cors())
+    this.express.use("/api/login", new LoginControllers().getRouter())
     this.express.use("/api/products", new ProductControllers().getRouter())
     this.express.use("/api/categories", new CategoryControllers().getRouter())
     this.express.use("/api/subcategories", new SubCategoryControllers().getRouter())
