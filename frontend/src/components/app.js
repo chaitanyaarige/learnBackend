@@ -1,8 +1,8 @@
 import React from 'react';
-import Card from './components/statefullComponents/Card'
-import Listing from './components/statefullComponents/Listing'
+import Card from './statefullComponents/Card'
+import Listing from './statefullComponents/Listing'
 
-class App extends React.Component {
+class Apps extends React.Component {
 
   state = {
     arr : [
@@ -46,4 +46,4 @@ class App extends React.Component {
 }
 }
 
-export default App;
+export default Apps;
