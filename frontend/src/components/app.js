@@ -34,10 +34,7 @@ class Apps extends React.Component {
   return (
     <div className="App">
       <div>
-        <h1>Hello</h1>
-      </div>
-      <div>
-        <Card cardList={this.state.arr} change={this.state.changeMe} changeNameEvent={this.onChangeName}/>
+        {/* <Card cardList={this.state.arr} change={this.state.changeMe} changeNameEvent={this.onChangeName}/> */}
       </div>
       <br></br><br></br><br></br><br></br>
 

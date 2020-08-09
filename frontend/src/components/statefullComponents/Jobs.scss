@@ -17,9 +17,16 @@
     grid-gap: 10px;
   }
 
+  &__flexcontainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   &__serialNumber {
     text-align: initial;
     padding: 10px;
+    // margin: auto;
   }
 
   &__subcontainer {
