@@ -24,10 +24,10 @@ class Card extends React.Component {
         {
           this.state.jobs.length ? this.state.jobs.map((item) => {
             return (
-              <div key={item.id}>
+              <div className="Jobs__maincontainer" key={item.id}>
                 {
-                  <div className="Jobs__maincontainer">
-                    <div>
+                  <div className="Jobs__gridcontainer">
+                    <div className="Jobs__serialNumber">
                       {item.id}
                     </div>
                     <div>
