@@ -1,6 +1,7 @@
 import { createConnection } from "typeorm";
 import AppExpress from "./apex/AppExpress"
 import "reflect-metadata";
+require('dotenv').config();
 
 let dbOptions: any = {
   name: "default",
