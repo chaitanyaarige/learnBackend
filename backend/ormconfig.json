@@ -1,4 +1,5 @@
 {
+  "entities": ["dist/entity/*{.ts,.js}"],
    "migrations": [
       "src/migration/**/*.ts"
    ],

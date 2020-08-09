@@ -13,7 +13,7 @@ let dbOptions: any = {
   database: "pharmacy",
   logging: false,
   synchronize: true,
-  entities: process.env.dev ? ["dist/entity/*{.ts,.js}"] : ["src/entity/*{.ts,.js}"] ,
+  entities: ["dist/entity/*{.ts,.js}"],
 };
 
 let start = async () => {
