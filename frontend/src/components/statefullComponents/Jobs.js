@@ -1,5 +1,5 @@
 import React from 'react'
-import './Jobs.css'
+import './Jobs.scss'
 
 class Card extends React.Component {
   state = {
@@ -26,7 +26,7 @@ class Card extends React.Component {
             return (
               <div key={item.id}>
                 {
-                  <div className="maincontainer">
+                  <div className="Jobs__maincontainer">
                     <div>
                       {item.id}
                     </div>
