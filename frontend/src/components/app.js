@@ -11,7 +11,7 @@ class Apps extends React.Component {
         {cardName: 'Card Two', cardNumber: '567898', id: 2 },
         {cardName: 'Card Three', cardNumber: '87654567', id: 3 },
           ],
-    changeMe: 'kiran'
+    changeMe: 'myyyy'
   }
 
   onChangeName = (name) => {
@@ -33,14 +33,9 @@ class Apps extends React.Component {
 
   return (
     <div className="App">
-      <div>
-        {/* <Card cardList={this.state.arr} change={this.state.changeMe} changeNameEvent={this.onChangeName}/> */}
-      </div>
-      <br></br><br></br><br></br><br></br>
-
       <Jobs></Jobs>
-
       <Listing array={this.state.arr} update={this.updateLsit} />
+      <Card cardList={this.state.arr} change={this.state.changeMe} changeNameEvent={this.onChangeName}/>
     </div>
   );
 }
