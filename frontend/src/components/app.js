@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './statefullComponents/Card'
 import Listing from './statefullComponents/Listing'
+import Jobs from "./statefullComponents/Jobs"
 
 class Apps extends React.Component {
 
@@ -39,6 +40,8 @@ class Apps extends React.Component {
         <Card cardList={this.state.arr} change={this.state.changeMe} changeNameEvent={this.onChangeName}/>
       </div>
       <br></br><br></br><br></br><br></br>
+
+      <Jobs></Jobs>
 
       <Listing array={this.state.arr} update={this.updateLsit} />
     </div>
