@@ -21,6 +21,23 @@ class Card extends React.Component {
   render() {
     return (
       <div>
+        <div className="Jobs__maincontainer">
+          <div className="Jobs__gridcontainer">
+            <div className="Jobs__serialNumber Jobs__topHeader">
+              Serial Number
+            </div>
+            <div className="Jobs__serialNumber Jobs__topHeader">
+              Employee Name
+            </div>
+            <div className="Jobs__serialNumber Jobs__topHeader">
+              Employee Age
+            </div>
+            <div className="Jobs__serialNumber Jobs__topHeader">
+              Employee Salary
+            </div>
+          </div>
+        </div>
+
         {
           this.state.jobs.length ? this.state.jobs.map((item) => {
             return (
@@ -30,12 +47,17 @@ class Card extends React.Component {
                     <div className="Jobs__serialNumber">
                       {item.id}
                     </div>
-                    <div>
+                    <div className="Jobs__serialNumber">
                       {item.employee_name}
+                    </div>
+                    <div className="Jobs__serialNumber">
+                      {item.employee_age}
+                    </div>
+                    <div className="Jobs__serialNumber">
+                      {item.employee_salary}
                     </div>
                   </div>
                 }
-
               </div>
             )
           }) :

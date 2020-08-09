@@ -4,18 +4,22 @@
     justify-content: center;
   }
 
+  &__topHeader {
+    border: 1px solid #817b7b;
+  }
+
   &__gridcontainer {
-    max-width: 690px;
-    min-width: 500px;
+    min-width: 1170px;
     justify-content: center;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 75px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-auto-rows: 45px;
     grid-gap: 10px;
   }
 
   &__serialNumber {
     text-align: initial;
+    padding: 10px;
   }
 
   &__subcontainer {
