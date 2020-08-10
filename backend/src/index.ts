@@ -4,15 +4,16 @@ import "reflect-metadata";
 require('dotenv').config();
 
 let dbOptions: any = {
-  name: "default",
-  type: "postgres",
-  host: "localhost",
-  port: 5432,
-  username: "postgres",
-  password: "postgres",
-  database: "pharmacy",
-  logging: false,
+  name:  "default",
+  type:  "postgres",
+  host:  process.env.HEROKU_HOST || "localhost",
+  port:  5432,
+  username:  process.env.HEROKU_USERNAME || "postgres",
+  password:  process.env.HEROKU_PASSWORD || "postgres",
+  database:  process.env.HEROKU_DATABASE || "pharmacy",
+  url: process.env.HEROKU_URL || '',
   synchronize: true,
+  logging: false,
   entities: ["dist/entity/*{.ts,.js}"],
 };
 
@@ -23,7 +24,7 @@ let start = async () => {
       console.log("Connected To DataBase");
       let expressObj = new AppExpress().express;
 
-      let port = 5200;
+      let port =  process.env.PORT || 5200;
       expressObj.listen(port, () => {
         console.log(` ***********************************************
            server is listening on ${port}  http://localhost:${port}/

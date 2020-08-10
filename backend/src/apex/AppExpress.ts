@@ -31,13 +31,13 @@ export default class AppExpress {
     this.express.use(cors())
     // this.express.use("/api/auth", new AuthControllers().getRouter())
     // this.express.use("/api/register", new AuthControllers().getRouter())
-    this.express.use("/api/products", new ProductControllers().getRouter())
-    this.express.use("/api/categories", new CategoryControllers().getRouter())
-    this.express.use("/api/subcategories", new SubCategoryControllers().getRouter())
-    this.express.use("/api/cities", new CitiesControllers().getRouter())
-    this.express.use("/api/suppliers", new SupplierControllers().getRouter())
-    this.express.use("/api/customers", new CustomerControllers().getRouter())
-    this.express.use("/api/orders", new OrdersControllers().getRouter())
+    this.express.use("/api/products", await new ProductControllers().getRouter())
+    this.express.use("/api/categories", await new CategoryControllers().getRouter())
+    this.express.use("/api/subcategories", await new SubCategoryControllers().getRouter())
+    this.express.use("/api/cities", await new CitiesControllers().getRouter())
+    this.express.use("/api/suppliers", await new SupplierControllers().getRouter())
+    this.express.use("/api/customers", await new CustomerControllers().getRouter())
+    this.express.use("/api/orders", await new OrdersControllers().getRouter())
   }
 
 
