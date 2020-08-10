@@ -1,14 +1,10 @@
-https://www.getpostman.com/collections/1f4880de4df201484109
+https://reactrouter.com/web/api/history
 
-https://github.com/devias-io/react-material-dashboard.git
-
-https://www.smashingmagazine.com/2020/06/rest-api-react-fetch-axios/
+https://react-hook-form.com/get-started
 
 login/logout/register
 admin access user
 proper response codes
-DB backup with some data
 complete admin panel
 find One user by email
-How to migrate according to Entity
 Forgot password email implement
