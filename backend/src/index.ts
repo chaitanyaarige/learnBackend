@@ -15,7 +15,13 @@ let dbOptions: any = {
   synchronize: true,
   logging: false,
   entities: ["src/entity/*{.ts,.js}"],
-};
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    }
+  }
+}
 
 let start = async () => {
   try {

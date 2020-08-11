@@ -18,7 +18,7 @@ export class Customer {
   // is_admin: Boolean;
 
   @Column({name:"phone"})
-  phone: number;
+  phone: string;
 
   @Column({name:"address"})
   address: string;

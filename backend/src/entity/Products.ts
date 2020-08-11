@@ -20,7 +20,7 @@ export class Products {
   @Column("int",{array: true, name:"product_sub_category"})
   product_sub_category: [];
 
-  @Column({name:"price"})
+  @Column({nullable: true, name:"price"})
   price: number;
 
   @Column({name:"discount"})
