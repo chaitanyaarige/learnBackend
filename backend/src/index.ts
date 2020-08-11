@@ -14,7 +14,7 @@ let dbOptions: any = {
   url: process.env.HEROKU_URL || '',
   synchronize: true,
   logging: false,
-  entities: ["src/entity/*{.ts,.js}"],
+  entities: process.env.HEROKU ? ["dist/entity/*{.ts,.js}"] : ["src/entity/*{.ts,.js}"],
   ssl: true,
   extra: {
     ssl: {
