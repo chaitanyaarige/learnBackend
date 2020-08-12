@@ -11,11 +11,8 @@ export class Customer {
   @Column({name:"email"})
   email: string;
 
-  // @Column({name: 'password'})
-  // password: string;
-
-  // @Column({name: 'is_admin'})
-  // is_admin: Boolean;
+  @Column({name: 'password'})
+  password: string;
 
   @Column({name:"phone"})
   phone: string;
