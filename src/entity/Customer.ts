@@ -11,7 +11,7 @@ export class Customer {
   @Column({name:"email"})
   email: string;
 
-  @Column({name: 'password'})
+  @Column({nullable: true, name: 'password'})
   password: string;
 
   @Column({name:"phone"})

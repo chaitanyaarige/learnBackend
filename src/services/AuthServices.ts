@@ -1,4 +1,4 @@
-import { Customer } from "../entity/Customer";
+import { Auth } from "../entity/Auth";
 import { AuthRepository } from "../repositories/AuthRepository";
 
 export class AuthService {
@@ -28,7 +28,7 @@ export class AuthService {
     }
   }
 
-  async saveOne(datas: Customer) {
+  async saveOne(datas: Auth) {
     try {
       let data: any = await this.authRepository.saveOne(datas);
       return data;

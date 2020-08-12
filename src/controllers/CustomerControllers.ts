@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import { CustomerService } from "../services/CustomerService"
+import bcrypt from "bcrypt";
 
 export class CustomerControllers {
   private componentName: string = "CustomerControllers";
@@ -22,6 +23,14 @@ export class CustomerControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
+        const currentpPassword = reqData.password
+        const salt = bcrypt.genSaltSync(10);
+        const currentPasswordHash = bcrypt.hashSync(currentpPassword, salt);
+        // if (!bcrypt.compareSync(oldPassword, currentPasswordHash)) {
+        //   console.log("The Current Password is Wrong");
+        // }
+        console.log(currentPasswordHash)
+        reqData.password = currentPasswordHash
         let customer = await this.service.saveOne(reqData);
         response.send({ status: 1, data: customer });
       } catch (error) {
