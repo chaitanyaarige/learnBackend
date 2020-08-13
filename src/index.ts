@@ -1,5 +1,5 @@
 import { createConnection } from "typeorm";
-import AppExpress from "./apex/AppExpress"
+import AppExpress from "./entry/AppExpress"
 import "reflect-metadata";
 require('dotenv').config();
 

@@ -9,6 +9,7 @@ export class CustomerControllers {
 
   getRouter(): Router {
     this.router.get("/", async (request: Request, response: Response) => {
+      // NEED to be admin or doctor to see all Customers
       try {
         let customer = await this.service.findAll();
         response.send({ status: 1, data: customer });
@@ -23,6 +24,11 @@ export class CustomerControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
+
+        // Customer.findOne({
+          // where: {
+              // email: req.body.email
+        // if exists - return user exists - else - encrypt password
         const currentpPassword = reqData.password
         const salt = bcrypt.genSaltSync(10);
         const currentPasswordHash = bcrypt.hashSync(currentpPassword, salt);

@@ -1,10 +1,12 @@
 import { Router, Request, Response } from "express";
-import { AuthService } from "../services/AuthServices"
+import { AuthService } from "../services/AuthServices";
+import { CustomerService } from "../services/CustomerService"
 
 export class AuthControllers {
   private componentName: string = "AuthControllers";
   private router: Router = Router();
   private service: any = new AuthService();
+  private customerService: any = new CustomerService();
 
   getRouter(): Router {
     this.router.post("/login", async (request: Request, response: Response) => {

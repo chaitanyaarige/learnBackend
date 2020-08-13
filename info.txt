@@ -2,9 +2,40 @@ https://reactrouter.com/web/api/history
 https://www.getpostman.com/collections/1f4880de4df201484109
 https://react-hook-form.com/get-started
 
-login/logout/register
+
+1. save user password in encrypted form in customer column
+2. do not register duplicate email id
+3. Initially not necessary  ?? send jwt token generated after user requests for signin - and store in DB auth_tokens
+4. ask client to send Jwt token on every request, if verified then send the response - verify by expiration time and user ID
+5. check if the user can save same token, for multiple tabs (Is it required like bank - no new tab)
+6. Login with  phone number too...  request.body.phone ? then verify user number in user DB
+7. Ask for common loopholes
+8. how do you logout - req.session.user = null ?
+9. send a email, if forgot-user api is hit
+10. EDIT - update USER details - except phone number (one phone - one user)
+
+POINT - 3 above has {
+  function isLoggedIn (req, res, next) {
+  if (!(req.session && req.session.user)) {
+    return res.send('Not logged in!');
+  }
+  next();
+
+  //somewhere else
+  app.get("/api", isLoggedIn, function (req, res) {
+   //Something private
+})
+}
+}
+5. forgot_pasword_token {}
+6.
+https://rapidapi.com/JayemithLLC/api/quick-easy-sms  // For FREE SMS OTP
+https://rapidapi.com/d7admin/api/d7sms
+https://rapidapi.com/nexmo/api/nexmo-verify/pricing
+
+login/logout/register/change password/forgot-password
 admin access user
 proper response codes
-complete admin panel
 find One user by email
 Forgot password email implement
+register a doctor separately - register a user separately
