@@ -28,6 +28,15 @@ export class ProductsService {
     }
   }
 
+  async findOne(id: Products) {
+    try {
+      let data: any = await this.productsRepository.findOne(id);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async saveOne(datas: Products) {
     try {
       let data: any = await this.productsRepository.saveOne(datas);

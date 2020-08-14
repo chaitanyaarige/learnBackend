@@ -25,14 +25,6 @@ export class SubCategoriesRepository {
     );
   }
 
-  async entity(id: string) {
-    return await this.dao.findOne(id, {
-      where:{
-
-      }
-    });
-  }
-
   async delete(data: any) {
     data.active = !data.active;
     return await this.dao.save(data);

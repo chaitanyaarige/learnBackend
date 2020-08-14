@@ -17,6 +17,18 @@ export class ProductControllers {
       }
     });
 
+    this.router.get("/:id", async (request: Request, response: Response) => {
+      try {
+        let reqData: any;
+        reqData = request.body ? request.body : {};
+        let products = await this.service.findOne(reqData.id );
+        response.send({ status: 1, data: products });
+      } catch (error) {
+        console.log(error);
+        response.send({ status: 0, error: error });
+      }
+    });
+
     this.router.post("/", async (request: Request, response: Response) => {
       try {
         let reqData: any;
