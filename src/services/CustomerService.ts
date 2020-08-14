@@ -19,6 +19,15 @@ export class CustomerService {
     }
   }
 
+  async findOne(id: Customer) {
+    try {
+      let data: any = await this.customerRepository.findOne(id);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async findAll() {
     try {
       let data: any = await this.customerRepository.findAll();

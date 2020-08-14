@@ -30,7 +30,9 @@ export class CustomerRepository {
 
   async findOne(data: any) {
     return await this.dao.findOne(data, {
-      where: {},
+      where: {
+        id: data
+      },
     });
   }
 }

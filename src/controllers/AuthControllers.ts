@@ -14,14 +14,14 @@ export class AuthControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
-        let auth = await this.service.saveOne(reqData);
-        response.send({ status: 1, data: auth });
+        // let auth = await this.service.findOne(reqData);
+        // response.send({ status: 1, data: auth });
       } catch (error) {
         console.log(error);
         response.send({ status: 0, error: error });
       }
     });
-
+    // SignUp a new User, if phone does not exist
     this.router.post("/register", async (request: Request, response: Response) => {
       try {
         let reqData: any;

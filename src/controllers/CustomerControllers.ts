@@ -19,6 +19,19 @@ export class CustomerControllers {
       }
     });
 
+    this.router.get("/:id", async (request: Request, response: Response) => {
+      try {
+        let reqData: any;
+        reqData = request.param ? request.body : {};
+        console.log(reqData)
+        let customer = await this.service.findOne(reqData.id );
+        response.send({ status: 1, data: customer });
+      } catch (error) {
+        console.log(error);
+        response.send({ status: 0, error: error });
+      }
+    });
+
     this.router.post("/", async (request: Request, response: Response) => {
       try {
         let reqData: any;
