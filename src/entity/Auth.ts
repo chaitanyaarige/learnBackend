@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne,  ManyToOne } from "typeorm";
 import { Customer } from "./Customer"
 
-@Entity("auth_tokens)")
+@Entity("auth_tokens")
 export class Auth {
   @PrimaryGeneratedColumn({name:"id"})
   id: number;
