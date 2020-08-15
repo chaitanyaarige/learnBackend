@@ -31,13 +31,11 @@ export class AuthControllers {
           return response.status(400).send({ data: 'Customer Not Exists'});
         }  else {
            const currentPassword = reqData.password;
-           const salt = bcrypt.genSaltSync(10);
-           const currentPasswordHash = bcrypt.hashSync(currentPassword, salt);
-           console.log(existingCustomer.password, currentPasswordHash)
-           if (!bcrypt.compareSync(existingCustomer.password, currentPasswordHash)) {
+           if (!bcrypt.compareSync(currentPassword, existingCustomer.password, )) {
              response.status(401).send({ status: 'The Current Password is Wrong' });
+           } else {
+             response.status(200).send({ existingCustomer });
            }
-          response.status(200).send({ existingCustomer });
         }
       } catch (error) {
         response.status(500).send({error: 'Internal Server Error catch'});
