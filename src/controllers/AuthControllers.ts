@@ -2,7 +2,8 @@ import { Router, Request, Response } from "express";
 import { AuthService } from "../services/AuthServices";
 import { CustomerService } from "../services/CustomerService";
 import bcrypt from "bcrypt";
-// import * as jwt from "jsonwebtoken"
+import * as jwt from "jsonwebtoken"
+import authenticateJWT from "../middleware/jwtverify"
 // import { Transport, createTransport } from "nodemailer"
 // import { hashSync, compareSync } from "bcrypt"
 
@@ -12,6 +13,13 @@ export class AuthControllers {
   private router: Router = Router();
   private service: any = new AuthService();
   private customerService: any = new CustomerService();
+
+  // public static DaysDiff(d1: Date, d2: Date): number {
+  //   var t2: number = d2.getTime();
+  //   var t1: number = d1.getTime();
+  //   let diff: any = (t2 - t1) / (24 * 3600 * 1000);
+  //   return parseInt(diff);
+  // }
 
   getRouter(): Router {
     this.router.post("/login", async (request: Request, response: Response) => {
@@ -34,7 +42,19 @@ export class AuthControllers {
            if (!bcrypt.compareSync(currentPassword, existingCustomer.password, )) {
              response.status(401).send({ status: 'The Current Password is Wrong' });
            } else {
-             response.status(200).send({ existingCustomer });
+             // Generate an access token
+             const accessTokenSecret = 'CHAIT12345678'
+             let expires_at = new Date().toISOString();
+             const token = jwt.sign({ sub: existingCustomer.id }, accessTokenSecret, { expiresIn: '1d' });
+             let tokendata = { existingCustomer, token, expires_at}
+             let saveData = {
+              expires_at,
+              is_active: true,
+              customer_id: existingCustomer.id,
+              created_at: expires_at
+             }
+             await this.service.saveOne(saveData);
+             response.status(200).send(tokendata);
            }
         }
       } catch (error) {
