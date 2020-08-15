@@ -28,6 +28,15 @@ export class CustomerService {
     }
   }
 
+  async findByPhone(phone: Customer) {
+    try {
+      let data: any = await this.customerRepository.findByPhone(phone);
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async findAll() {
     try {
       let data: any = await this.customerRepository.findAll();

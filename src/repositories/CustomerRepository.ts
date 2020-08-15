@@ -28,11 +28,17 @@ export class CustomerRepository {
     return await this.dao.save(data);
   }
 
+  async findByPhone(data: any) {
+    return await this.dao.findOne({
+      where: {
+        phone: data
+      },
+    });
+  }
+
   async findOne(data: any) {
     return await this.dao.findOne(data, {
-      where: {
-        id: data
-      },
+      where: {},
     });
   }
 }

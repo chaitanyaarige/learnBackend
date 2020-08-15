@@ -11,24 +11,23 @@ export class CustomerControllers {
     this.router.get("/", async (request: Request, response: Response) => {
       // NEED to be admin or doctor to see all Customers
       try {
-        let customer = await this.service.findAll();
-        response.send({ status: 1, data: customer });
+        let customers = await this.service.findAll();
+        response.status(200).send({ customers });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
     this.router.get("/:id", async (request: Request, response: Response) => {
       try {
         let reqData: any;
-        reqData = request.param ? request.body : {};
-        console.log(reqData)
-        let customer = await this.service.findOne(reqData.id );
-        response.send({ status: 1, data: customer });
+        reqData = request.params ? request.params : {};
+        let customer = await this.service.findOne(reqData);
+        response.status(200).send({ customer });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
@@ -37,24 +36,20 @@ export class CustomerControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
-
-        // Customer.findOne({
-          // where: {
-              // email: req.body.email
-        // if exists - return user exists - else - encrypt password
+        let existingCustomer = await this.service.findByPhone(reqData.phone);
+        if(existingCustomer) return response.status(400).send({ data: 'Customer Phone Exists'});
         const currentpPassword = reqData.password
         const salt = bcrypt.genSaltSync(10);
         const currentPasswordHash = bcrypt.hashSync(currentpPassword, salt);
         // if (!bcrypt.compareSync(oldPassword, currentPasswordHash)) {
         //   console.log("The Current Password is Wrong");
         // }
-        console.log(currentPasswordHash)
         reqData.password = currentPasswordHash
         let customer = await this.service.saveOne(reqData);
-        response.send({ status: 1, data: customer });
+        response.status(201).send({ customer });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
