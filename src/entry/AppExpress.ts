@@ -1,5 +1,5 @@
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import { json, urlencoded } from "body-parser";
 import { AuthControllers } from '../controllers/AuthControllers';
 import { ProductControllers } from "../controllers/ProductControllers";
@@ -51,16 +51,13 @@ export default class AppExpress {
                 if (data && data != "") {
                     req.body = data;
                 }
-                // this.addSessionInfo(req);
                 next();
                 console.log("=================parse nest=======================================")
             });
 
-            // this.addSessionInfo(req);
             console.log("================== next 1 ===================")
             // next();
         } else {
-            // this.addSessionInfo(req);
             console.log("================== next 2 ===================")
             next();
         }

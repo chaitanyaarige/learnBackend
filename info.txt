@@ -5,11 +5,9 @@ https://react-hook-form.com/get-started
 Doubts:
 1. check if the user can save same token, for multiple tabs (Is it required like bank - no new tab)
 2. Ask for common loopholes
-
-
-
-
-
+3. Send proper response codes...
+4. using express 5 and block requests from any others than our app
+5. how are  auth/ login/ for-got pass/ change handled from same App express and controller without /auth
 
 
 
