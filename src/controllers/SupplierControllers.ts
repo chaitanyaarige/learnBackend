@@ -10,10 +10,10 @@ export class SupplierControllers {
     this.router.get("/", async (request: Request, response: Response) => {
       try {
         let supplier = await this.service.findAll();
-        response.send({ status: 1, data: supplier });
+        response.status(200).send({ supplier });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
@@ -23,10 +23,10 @@ export class SupplierControllers {
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
         let supplier = await this.service.saveOne(reqData);
-        response.send({ status: 1, data: supplier });
+        response.status(200).send({ supplier });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 

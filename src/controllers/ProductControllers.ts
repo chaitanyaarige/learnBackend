@@ -13,7 +13,7 @@ export class ProductControllers {
         response.send({ status: 1, data: products });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
@@ -22,10 +22,10 @@ export class ProductControllers {
         let reqData: any;
         reqData = request.body ? request.body : {};
         let products = await this.service.findOne(reqData.id );
-        response.send({ status: 1, data: products });
+        response.status(200).send({ products });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
@@ -35,10 +35,10 @@ export class ProductControllers {
         reqData = request.body ? request.body : {};
         this.service.sessionInfo = request.body.sessionInfo;
         let products = await this.service.saveOne(reqData);
-        response.send({ status: 1, data: products });
+        response.status(200).send({ products });
       } catch (error) {
         console.log(error);
-        response.send({ status: 0, error: error });
+        response.status(400).send({ error });
       }
     });
 
