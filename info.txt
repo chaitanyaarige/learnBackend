@@ -11,7 +11,16 @@ Doubts:
 
 
 
+https://reactrouter.com/web/api/history
+https://www.getpostman.com/collections/1f4880de4df201484109
+https://react-hook-form.com/get-started
 
+login/logout/register
+admin access user
+proper response codes
+complete admin panel
+find One user by email
+Forgot password email implement
 
 
 
